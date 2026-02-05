@@ -69,6 +69,7 @@ export default function App() {
             <Route path="kyc" element={<KYCPage/>}/>
             <Route path="reports" element={<ReportsPage/>}/>
             </Route>
+
            
             {/* <ProtectedRoute> */}
                 {/* <Route path="/login"/> */}

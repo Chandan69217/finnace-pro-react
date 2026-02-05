@@ -1,9 +1,29 @@
-
-.noscrollbar {
+.scrollArea {
+    overflow-y: auto;
     scrollbar-width: none;
-    -ms-overflow-style: none;
 }
 
-.noscrollbar::-webkit-scrollbar {
-    display: none;
+
+.scrollArea:hover {
+    scrollbar-width: unset;
 }
+
+.scrollArea::-webkit-scrollbar {
+    width: 0;
+}
+
+
+.scrollArea:hover::-webkit-scrollbar {
+    width: 2px;
+}
+
+
+.scrollArea::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.4);
+    border-radius: 999px;
+}
+
+
+.scrollArea::-webkit-scrollbar-track {
+    background: transparent;
+} 

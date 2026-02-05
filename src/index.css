@@ -152,7 +152,8 @@ body {
 }
 
 
-::-webkit-scrollbar {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -166,7 +167,6 @@ body {
 }
 
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(100, 100, 100, 0.4) transparent;
-}
+
+
+

@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import { cn } from '../../lib/utils'
 import { useAuth } from '../../lib/auth-context'
-import styles from "./sidebar.module.css"
+import styles from './sidebar.module.css'
+
 import {
   Home,
   User,
@@ -52,6 +53,8 @@ export function Sidebar({ isOpen, onClose }) {
 
   const navItems = user?.role === 'admin' ? adminNavItems : userNavItems
 
+
+
   return (
     <>
       {/* Mobile overlay */}
@@ -67,7 +70,6 @@ export function Sidebar({ isOpen, onClose }) {
         className={cn(
           'fixed inset-y-0 left-0 z-40 w-64 bg-background border-r',
           'transform transition-transform duration-300',
-          styles.noscrollbar,
           isOpen
             ? 'translate-x-0 pointer-events-auto'
             : '-translate-x-full pointer-events-none',
@@ -117,7 +119,7 @@ export function Sidebar({ isOpen, onClose }) {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+          <nav className={cn('flex-1 px-3 py-4 space-y-1',styles.scrollArea)}>
             {navItems.map((item) => {
               const Icon = item.icon
               const isActive = pathname === item.to
