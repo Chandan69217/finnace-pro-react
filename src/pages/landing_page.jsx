@@ -370,7 +370,8 @@ export default function LandingPage() {
 
           <div className="flex items-center gap-3">
             <Link
-              to="/terms?from=landing"
+              to="/terms"
+              state={{"from":"landing"}}
               className="text-sm text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
             >
               Terms of service
@@ -380,7 +381,8 @@ export default function LandingPage() {
             <div className="h-4 w-px bg-border" />
 
             <Link
-              to="/privacy?from=landing"
+              to="/privacy"
+              state={{ "from": "landing" }}
               className="text-sm text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
             >
               Privacy

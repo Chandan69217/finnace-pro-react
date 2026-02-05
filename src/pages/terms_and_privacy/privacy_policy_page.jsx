@@ -1,140 +1,152 @@
-import { Link } from "react-router-dom"
-import { Card, CardContent } from "../../components/ui/card"
+import { Navigate, Link ,useLocation} from "react-router-dom"
+import {
+    Accordion,
+    AccordionItem,
+    AccordionTrigger,
+    AccordionContent,
+} from "../../components/ui/accordion"
+import { Button } from "../../components/ui/button"
 
 export default function PrivacyPolicyPage() {
+ 
+    const location = useLocation();
+    const from = location.state?.from
+    
+    if (from !== "landing" && from !== "register") {
+        return <Navigate to="/" replace />
+    }
+
     return (
-        <div className="min-h-screen bg-muted/30 py-10 px-4">
-            <div className="max-w-4xl mx-auto space-y-6">
+        <div className="min-h-screen">
 
-                {/* Header */}
-                <div className="space-y-2">
-                    <h1 className="text-3xl font-bold text-foreground">
-                        Privacy Policy
-                    </h1>
-                    <p className="text-sm text-muted-foreground">
-                        Last updated: January 2026
-                    </p>
-                </div>
-
-                {/* Content Card */}
-                <Card className="shadow-sm">
-                    <CardContent className="p-6 space-y-8 leading-relaxed text-sm text-foreground">
-
-                        {/* Intro */}
-                        <section>
-                            <p>
-                                At <span className="font-medium">FinancePro</span>, your privacy
-                                is important to us. This Privacy Policy explains how we collect,
-                                use, disclose, and safeguard your information when you use our
-                                platform.
-                            </p>
-                        </section>
-
-                        {/* Section */}
-                        <section id="information-collection" className="space-y-3">
-                            <h2 className="text-lg font-semibold">
-                                1. Information We Collect
-                            </h2>
-                            <p>
-                                We may collect personal information that you voluntarily provide
-                                to us, including but not limited to:
-                            </p>
-                            <ul className="list-disc pl-6 space-y-1">
-                                <li>Email address and contact details</li>
-                                <li>Account login credentials</li>
-                                <li>Usage and device information</li>
-                            </ul>
-                        </section>
-
-                        {/* Section */}
-                        <section id="use-of-information" className="space-y-3">
-                            <h2 className="text-lg font-semibold">
-                                2. How We Use Your Information
-                            </h2>
-                            <p>
-                                We use the collected information to:
-                            </p>
-                            <ul className="list-disc pl-6 space-y-1">
-                                <li>Provide and maintain our services</li>
-                                <li>Improve security and prevent fraud</li>
-                                <li>Communicate updates and support</li>
-                            </ul>
-                        </section>
-
-                        {/* Section */}
-                        <section id="data-sharing" className="space-y-3">
-                            <h2 className="text-lg font-semibold">
-                                3. Data Sharing & Disclosure
-                            </h2>
-                            <p>
-                                We do not sell, trade, or rent your personal information to
-                                third parties. Data may be shared only when required by law or
-                                to protect our legal rights.
-                            </p>
-                        </section>
-
-                        {/* Section */}
-                        <section id="security" className="space-y-3">
-                            <h2 className="text-lg font-semibold">
-                                4. Data Security
-                            </h2>
-                            <p>
-                                We implement industry-standard security measures to protect
-                                your data. However, no electronic transmission is 100% secure.
-                            </p>
-                        </section>
-
-                        {/* Section */}
-                        <section id="your-rights" className="space-y-3">
-                            <h2 className="text-lg font-semibold">
-                                5. Your Rights
-                            </h2>
-                            <p>
-                                You have the right to access, update, or delete your personal
-                                information. You may contact us at any time regarding privacy
-                                concerns.
-                            </p>
-                        </section>
-
-                        {/* Section */}
-                        <section id="changes" className="space-y-3">
-                            <h2 className="text-lg font-semibold">
-                                6. Changes to This Policy
-                            </h2>
-                            <p>
-                                We may update this Privacy Policy periodically. Any changes will
-                                be reflected on this page.
-                            </p>
-                        </section>
-
-                        {/* Contact */}
-                        <section id="contact" className="space-y-3">
-                            <h2 className="text-lg font-semibold">
-                                7. Contact Us
-                            </h2>
-                            <p>
-                                If you have any questions about this Privacy Policy, please
-                                contact us at{" "}
-                                <a
-                                    href="mailto:support@financepro.com"
-                                    className="text-primary hover:underline"
-                                >
-                                    support@financepro.com
-                                </a>
-                                .
-                            </p>
-                        </section>
-
-                    </CardContent>
-                </Card>
-
-                {/* Footer */}
-                <div className="text-center text-sm text-muted-foreground">
-                    <Link to="/" className="hover:underline text-primary">
-                        ← Back to Home
+            {/* Header */}
+            <div className="bg-primary p-6 px-10 flex flex-col justify-between h-full">
+                <div>
+                    <Link to="/" className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-primary-foreground/20 flex items-center justify-center">
+                            <span className="text-primary-foreground font-bold text-lg">FP</span>
+                        </div>
+                        <span className="text-xl font-bold text-primary-foreground">
+                            FinancePro
+                        </span>
                     </Link>
                 </div>
+
+                <div className="mt-10">
+                    <p className="text-xs sm:text-sm uppercase tracking-wide text-primary-foreground/60 mb-1">
+                        Legal
+                    </p>
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-foreground">
+                        Privacy Policy
+                    </h1>
+                </div>
             </div>
+
+            {/* Content */}
+            <div className="px-6 sm:px-8 lg:px-18 pt-5 pb-4 overflow-y-auto scrollArea">
+                <Accordion
+                    type="multiple"
+                    defaultValue={[
+                        "information",
+                        "usage",
+                        "sharing",
+                        "cookies",
+                        "security",
+                        "rights",
+                        "retention",
+                        "changes",
+                        "contact",
+                    ]}
+                    className="w-full"
+                >
+                    <AccordionItem value="information">
+                        <AccordionTrigger>1. Information We Collect</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            We collect personal information such as name, email address,
+                            phone number, and financial details when you register or use
+                            FinancePro services.
+                        </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="usage">
+                        <AccordionTrigger>2. How We Use Your Information</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            Your information is used to provide services, process transactions,
+                            verify identity, improve platform security, and comply with legal
+                            requirements.
+                        </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="sharing">
+                        <AccordionTrigger>3. Information Sharing</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            We do not sell your personal data. Information may be shared with
+                            trusted partners, regulators, or law enforcement when required by law.
+                        </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="cookies">
+                        <AccordionTrigger>4. Cookies & Tracking</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            FinancePro uses cookies to enhance user experience, analyze traffic,
+                            and personalize content. You can control cookie preferences through
+                            browser settings.
+                        </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="security">
+                        <AccordionTrigger>5. Data Security</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            We implement industry-standard security measures to protect your data.
+                            However, no online system can guarantee absolute security.
+                        </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="rights">
+                        <AccordionTrigger>6. Your Rights</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            You have the right to access, update, or request deletion of your
+                            personal data, subject to legal and regulatory obligations.
+                        </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="retention">
+                        <AccordionTrigger>7. Data Retention</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            Personal data is retained only as long as necessary to fulfill legal,
+                            regulatory, and operational requirements.
+                        </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="changes">
+                        <AccordionTrigger>8. Changes to Privacy Policy</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            FinancePro may update this Privacy Policy periodically. Continued use
+                            of the platform signifies acceptance of the updated policy.
+                        </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="contact">
+                        <AccordionTrigger>9. Contact Us</AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                            For privacy-related concerns, contact us at
+                            <span className="font-medium text-foreground"> privacy@financepro.com</span>.
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </div>
+
+            {/* Footer */}
+            <div className="px-5 sm:px-6 lg:px-8 py-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3 justify-center sm:justify-end">
+                <Button variant="outline">
+                    <Link to="/"
+                    >Decline</Link>
+                </Button>
+                <Button>
+                    <Link to="/login">Accept</Link>
+                </Button>
+            </div>
+
         </div>
     )
 }

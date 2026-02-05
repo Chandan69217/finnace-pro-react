@@ -258,9 +258,9 @@ export default function RegisterPage() {
                 
                 <p className="text-xs text-center text-muted-foreground">
                   By creating an account, you agree to our{' '}
-                  <Link to="/terms?from=register" className="text-primary hover:underline">Terms of Service</Link>
+                  <Link to="/terms" state={{"from":"register"}} className="text-primary hover:underline">Terms of Service</Link>
                   {' '}and{' '}
-                  <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
+                  <Link to="/privacy" state={{ "from": "register" }} className="text-primary hover:underline">Privacy Policy</Link>
                 </p>
               </form>
               
