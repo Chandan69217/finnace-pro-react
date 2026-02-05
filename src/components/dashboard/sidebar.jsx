@@ -1,7 +1,7 @@
-import {Link} from 'react-router-dom'
-import { usePathname } from 'next/navigation'
+import { Link, useLocation } from 'react-router-dom'
 import { cn } from '../../lib/utils'
 import { useAuth } from '../../lib/auth-context'
+import styles from "./sidebar.module.css"
 import {
   Home,
   User,
@@ -47,7 +47,7 @@ const adminNavItems = [
 ]
 
 export function Sidebar({ isOpen, onClose }) {
-  const pathname = usePathname()
+  const { pathname } = useLocation()
   const { user, logout } = useAuth()
 
   const navItems = user?.role === 'admin' ? adminNavItems : userNavItems
@@ -65,8 +65,13 @@ export function Sidebar({ isOpen, onClose }) {
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed top-0 left-0 z-50 h-full w-64 bg-sidebar border-r border-sidebar-border transition-transform duration-300 lg:translate-x-0 lg:static lg:z-auto',
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+          'fixed inset-y-0 left-0 z-40 w-64 bg-background border-r',
+          'transform transition-transform duration-300',
+          styles.noscrollbar,
+          isOpen
+            ? 'translate-x-0 pointer-events-auto'
+            : '-translate-x-full pointer-events-none',
+          'lg:translate-x-0 lg:pointer-events-auto'
         )}
       >
         <div className="flex flex-col h-full">
@@ -151,6 +156,7 @@ export function Sidebar({ isOpen, onClose }) {
           </div>
         </div>
       </aside>
+    
     </>
   )
 }
